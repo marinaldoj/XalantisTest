@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text } from "react-native";
+import AuthLayout from "../components/Layouts/AuthLayout";
 
 export default function Profile(){
     return(
-        <View>
+        <AuthLayout>
             <Text>Profile</Text>
-        </View>
+        </AuthLayout>
     )
 }
