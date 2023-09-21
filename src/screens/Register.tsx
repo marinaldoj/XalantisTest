@@ -25,6 +25,10 @@ export default function Login(){
         lastName: "",
         mail: "",
         password: "",
+        address: "",
+        street: "",
+        zipcode: "",
+
         logged: false
     })
 

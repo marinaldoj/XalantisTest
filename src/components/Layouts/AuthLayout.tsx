@@ -29,5 +29,7 @@ const styles = StyleSheet.create({
     },
     containerScroll: {
         padding: 20,
+        marginBottom: 10,
+        marginTop: 10,
     }
 })

@@ -21,7 +21,6 @@ export default function Pokemons({name}:IPoke){
     useEffect(() => {
         axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
         .then((resp) => {
-            console.log(resp.data.sprites.front_default)
             setPokemonInfo({
                 species: resp.data.species,
                 sprites: resp.data.sprites

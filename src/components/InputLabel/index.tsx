@@ -5,17 +5,19 @@ interface IInput{
     name: string;
     handleChange: (text:string) => void,
     secure?: boolean,
-    error?: boolean
+    error?: boolean,
+    currentValue?: string,
 }
 
 export default function InputLabel({
     name,
     handleChange,
     secure = false,
-    error = false
+    error = false,
+    currentValue = ""
 }:IInput){
 
-    const [value, setValue] = useState("")
+    const [value, setValue] = useState(currentValue)
     const styles = getStyles(error);
 
     return(

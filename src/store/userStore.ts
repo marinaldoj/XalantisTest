@@ -8,8 +8,12 @@ const defaultValues = {
     lastName: "",
     mail: "",
     password: "",
+    address: "",
+    street: "",
+    zipcode: "",
     logged: false
 }
+
 
 // User store (GlobalState User)
 
