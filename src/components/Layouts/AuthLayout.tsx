@@ -7,6 +7,8 @@ interface IAuth{
     children: React.ReactNode
 }
 
+// Auth Layout is a component used for authenticated screens
+
 export default function AuthLayout({children}:IAuth){
     return(
         <View style={styles.container}>
@@ -18,7 +20,6 @@ export default function AuthLayout({children}:IAuth){
         </View>
     )
 }
-
 
 const styles = StyleSheet.create({
     container: {

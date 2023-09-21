@@ -6,43 +6,14 @@ interface IPoke{
     name: string
 }
 
+// Application Car component 
 
-export default function Pokemons({name}:IPoke){
-
-    const [pokemonInfo, setPokemonInfo] = useState({
-        species: {
-            name: name
-        },
-        sprites:{
-            front_default: "https://pokeapi.co/static/pokeapi_256.3fa72200.png"
-        }
-    })
-
-    useEffect(() => {
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
-        .then((resp) => {
-            console.log(resp.data.sprites.front_default)
-            setPokemonInfo({
-                species: resp.data.species,
-                sprites: resp.data.sprites
-            })
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    },[])
-
+export default function Cars({name}:IPoke){
     return(
         <View style={styles.container}>
             <Text style={styles.text}>{
                 name[0].toUpperCase() + name.substring(1)
             }</Text>
-            <Image 
-                style={styles.imageStyle}
-                source={{
-                    uri: pokemonInfo.sprites.front_default
-                }}
-            />
         </View>
     )
 }

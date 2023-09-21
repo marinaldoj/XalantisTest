@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import AuthLayout from "../components/Layouts/AuthLayout";
 import Pokemons from "../components/Pokemons";
+import axios from "axios";
 
 interface IPokemon{
     name: string;
@@ -13,9 +14,13 @@ export default function Pokemon(){
     const [pokemons, setPokemons] = useState<Array<IPokemon>>([])
 
     useEffect(() => {
-        fetch("https://pokeapi.co/api/v2/pokemon-habitat/rare")
-        .then(response => response.json())
-        .then(pokemon => setPokemons(pokemon.pokemon_species))
+        axios.get("https://pokeapi.co/api/v2/pokemon-habitat/rare")
+        .then((resp) => {
+            setPokemons(resp.data.pokemon_species)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     },[])
     return(
         <AuthLayout>
@@ -27,7 +32,3 @@ export default function Pokemon(){
         </AuthLayout>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {}
-})

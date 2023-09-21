@@ -2,12 +2,15 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Routes from './src/routes/routes';
 import { NavigationContainer } from '@react-navigation/native';
+import { RecoilRoot } from 'recoil';
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Routes />
-    </NavigationContainer>
+    <RecoilRoot>
+      <NavigationContainer>
+        <Routes />
+      </NavigationContainer>
+    </RecoilRoot>
   );
 }
 
