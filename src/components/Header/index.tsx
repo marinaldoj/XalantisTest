@@ -1,16 +1,32 @@
 import React from "react";
-import { View,StyleSheet, Text } from "react-native";
-import { useRecoilValue } from "recoil";
+import { View,StyleSheet, Text, TouchableOpacity } from "react-native";
+import { useRecoilState } from "recoil";
 import { userAtom } from "../../store/userStore";
+import { MaterialIcons } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
 
 export default function Header(){
-    const { firstName } = useRecoilValue(userAtom);
+
+    const [user, setUser] = useRecoilState(userAtom) 
+    const navigation = useNavigation()
+
+    function Logout(){
+        setUser({
+            ...user,
+            logged: false
+        })
+        navigation.navigate("Login" as never)
+    }
+
     return(
         <View style={styles.wrapper}>
             <View style={styles.container}>
                 <Text style={styles.textWelcome}>Welcome,</Text>
-                <Text style={styles.title}>{firstName}</Text>
+                <Text style={styles.title}>{user.firstName}</Text>
             </View>
+            <TouchableOpacity style={styles.logout} onPress={() => {Logout()}}>
+                <MaterialIcons name="logout" size={34} color="#FFFFFF" />
+            </TouchableOpacity>
         </View>
     )
 }
@@ -19,9 +35,10 @@ const styles = StyleSheet.create({
     wrapper: {
         width: "100%",
         height: 100,
+        display: "flex",
+        flexDirection: "row"
     },
     container:{
-        width: "78%",
         height: "100%",
         backgroundColor: "#FFFFFF",
         borderBottomRightRadius: 100,
@@ -42,5 +59,11 @@ const styles = StyleSheet.create({
         fontWeight: "500",
         color:"#272829"
     },
+    logout:{
+        width: "25%",
+        height: "100%",
+        alignItems: "center",
+        justifyContent: "center"
+    }
 
 })

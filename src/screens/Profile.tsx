@@ -5,14 +5,24 @@ import InputLabel from "../components/InputLabel";
 import Button from "../components/Button";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../store/userStore";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Profile(){
 
     const [user, setUser] = useRecoilState(userAtom) 
     const [data, setData] = useState(user)
+    const navigation = useNavigation()
 
     function onSubmit(){
         setUser(data)
+    }
+
+    function Logout(){
+        setUser({
+            ...user,
+            logged: false
+        })
+        navigation.navigate("Login" as never)
     }
 
     return(
@@ -53,6 +63,12 @@ export default function Profile(){
                 <Button name="Save" handlePress={() => {
                     onSubmit()
                     Alert.alert("Info!","Data changed successfully!")
+                }} />
+            </View>
+
+            <View style={styles.lastView}>
+                <Button name="Log out" handlePress={() => {
+                    Logout()
                 }} />
             </View>
             
